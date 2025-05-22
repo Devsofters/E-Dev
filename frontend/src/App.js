@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Login from './Loginauth.js';
+import MainLayout from './components/MainLayout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit 
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ToastContainer position="top-right" autoClose={3000} />
+      {isLoggedIn ? (
+        <MainLayout LogOut={(e)=>{setIsLoggedIn(e)}} />
+      ) : (
+        <Login onLogin={(e) => setIsLoggedIn(e)} />
+      )}
+    </>
   );
 }
 
