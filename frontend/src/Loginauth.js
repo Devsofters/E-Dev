@@ -1,4 +1,4 @@
-import React, { useRef, useState , useEffect } from 'react';
+import React, { useRef, useState ,  } from 'react';
 import Slider from 'react-slick';
 import './styles/login.css';
 import 'slick-carousel/slick/slick.css';
@@ -12,22 +12,17 @@ function Login(props) {
 
   const [UserName,setUserName] = useState('')
   const [PassWord,setPassWord] = useState('')
-  const [LoginAuth,setLoginAuth] = useState('')
   const sliderRef = useRef(null);
 
-  useEffect(() => {
-    if (LoginAuth) {
-      localStorage.setItem("Username", UserName);
-      localStorage.setItem("Token", LoginAuth.toString());
-    }
-  }, [LoginAuth,UserName]);
+
   
 
   const handleLogin = (e) => {
     e.preventDefault();
     if(UserName.length > 0 && UserName ==='Admin' && PassWord ==='1590'){
       const loginAuth = Math.random()
-      setLoginAuth(loginAuth)
+      localStorage.setItem("Username", UserName);
+      localStorage.setItem("Token", loginAuth.toString());
       props.onLogin(true);
       Toast.success("Login Successfully")
     }
